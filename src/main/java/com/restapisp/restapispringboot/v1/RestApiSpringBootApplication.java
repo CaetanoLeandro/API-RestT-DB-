@@ -1,4 +1,4 @@
-package com.restapisp.restapispringboot;
+package com.restapisp.restapispringboot.v1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

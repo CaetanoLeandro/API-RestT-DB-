@@ -1,4 +1,4 @@
-package model;
+package com.restapisp.restapispringboot.v1.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -14,18 +14,18 @@ import java.time.LocalDateTime;
 @Data
 
 @Entity
-public class ClienteModel {
+public class ClientModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String nome;
-    private Long cep;
+    private String name;
+    private Long zipcode;
     @JsonFormat(pattern = "YYYY-MM-dd HH-mm-ss")
     @Builder.Default
-    private LocalDateTime data = LocalDateTime.now();
+    private LocalDateTime date = LocalDateTime.now();
 
-    public ClienteModel() {
+    public ClientModel() {
     }
 }
