@@ -1,7 +1,7 @@
 package com.restapisp.restapispringboot.v1.exceptions.handler;
 
-import com.sp03.sprint03.v1.exceptions.details.RestExceptionDetails;
-import com.sp03.sprint03.v1.exceptions.notfound.NotFoundException;
+import com.restapisp.restapispringboot.v1.exceptions.details.RestExceptionDetails;
+import com.restapisp.restapispringboot.v1.exceptions.notfound.NotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

@@ -5,21 +5,22 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Builder
 @Data
+@Document(collection = "Clients")
 
-@Entity
 public class ClientModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(nullable = false)
+    private String id;
+    @NonNull
     private String name;
     private Long zipcode;
     @JsonFormat(pattern = "YYYY-MM-dd HH-mm-ss")

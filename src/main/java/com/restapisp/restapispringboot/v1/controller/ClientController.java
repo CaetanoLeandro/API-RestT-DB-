@@ -2,19 +2,21 @@ package com.restapisp.restapispringboot.v1.controller;
 
 import com.restapisp.restapispringboot.v1.model.ClientModel;
 import com.restapisp.restapispringboot.v1.service.ClientService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-
+@AllArgsConstructor
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("api/v1/clientes")
 
 public class ClientController {
 
-    private ClientService service;
+    private final ClientService service;
+
 
     //POST
     @PostMapping
@@ -24,29 +26,29 @@ public class ClientController {
     }
 
     //PUT
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ClientModel createClient(@RequestBody @Valid ClientModel clientModel, @PathVariable Long id){
+    public ClientModel createClient(@RequestBody @Valid ClientModel clientModel, @PathVariable String id){
         return service.createClient(clientModel, id);
     }
 
     //PATCH
-    @PatchMapping
+    @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ClientModel toEditClient(@RequestBody @Valid ClientModel clientModel, @PathVariable Long id){
+    public ClientModel toEditClient(@RequestBody @Valid ClientModel clientModel, @PathVariable String id){
         return service.toEditClient(clientModel,id);
 
     }
 
     //GET
-    @GetMapping
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ClientModel findClient(@RequestBody @Valid Long id){
+    public ClientModel findClient(@RequestBody @Valid @PathVariable String id){
         return service.findClient(id);
     }
 
     //GET ALL
-    @GetMapping
+    @GetMapping("/findAll")
     @ResponseStatus(HttpStatus.OK)
     public List<ClientModel> listClient (){
         return  service.listAll();
@@ -55,7 +57,7 @@ public class ClientController {
     //DELETE
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteClient(@RequestParam(required = false) List<Long> id){
+    public void deleteClient(@RequestParam(required = false) List<String> id){
         service.deleteClient(id);
 
     }

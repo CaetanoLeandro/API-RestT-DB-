@@ -5,10 +5,13 @@ import com.restapisp.restapispringboot.v1.exceptions.notfound.NotFoundException;
 import com.restapisp.restapispringboot.v1.model.ClientModel;
 import com.restapisp.restapispringboot.v1.repository.ClientRepository;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+
+import static org.springframework.util.CollectionUtils.isEmpty;
 
 @AllArgsConstructor
 @Service
@@ -22,7 +25,7 @@ public class ClientService {
     }
 
     //PUT
-    public ClientModel createClient(ClientModel clientModel, Long id) {
+    public ClientModel createClient(ClientModel clientModel, String id) {
         ClientModel clientModel1 = clientRepository.findById((id))
                 .orElseThrow(() -> new NotFoundException("ID not found"));
         clientModel.setName(clientModel1.getName());
@@ -30,7 +33,7 @@ public class ClientService {
     }
 
     //Patch
-    public ClientModel toEditClient(ClientModel clientModel, Long id){
+    public ClientModel toEditClient(ClientModel clientModel, String id){
         ClientModel clientModel1 = clientRepository.findById((id))
                 .orElseThrow(() -> new NotFoundException("ID not found"));
         clientModel.setId(clientModel1.getId());
@@ -38,7 +41,7 @@ public class ClientService {
     }
 
     //GET
-    public ClientModel findClient(Long id) {
+    public ClientModel findClient(String id) {
         return clientRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("ID not found"));
     }
@@ -49,8 +52,8 @@ public class ClientService {
     }
 
     //DELETE
-    public void deleteClient(List<Long> id){
-        if(!CollectionUtils.isEmpty(id)){
+    public void deleteClient(List<String> id){
+        if(!isEmpty(id)){
             var erase = clientRepository.findAllById(id);
             clientRepository.deleteAll(erase);
         }
