@@ -22,7 +22,7 @@ public class ClientModel {
     private String id;
     @NonNull
     private String name;
-    private Long zipcode;
+    private String address;
     @JsonFormat(pattern = "YYYY-MM-dd HH-mm-ss")
     @Builder.Default
     private LocalDateTime date = LocalDateTime.now();
